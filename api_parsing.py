@@ -84,13 +84,26 @@ def parsing(name_of_city_ww, id_city_pogoda360):
         # Тут мы выбираем только необходимые значения
         remaining_text = remaining_text[match.end():]
 
-    n_days = 1
-    n_rainfall = 1
+    n_days = [31, 28.2, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    # n_days = 1
+    # n_rainfall = 1
+
+    print('n_rainfall = ', n_rainfall)
 
     # n_rainfall_div_n = np.divide(n_rainfall, n_days)
     n_rainfall_div_n = 0 if n_days == 0 else np.divide(n_rainfall, n_days)
     # h_rainfall_div_n_rainfall = np.divide(h_rainfall, n_rainfall)
-    h_rainfall_div_n_rainfall = 0 if n_rainfall == 0 else np.divide(h_rainfall, n_rainfall)
+    # h_rainfall_div_n_rainfall = 0 if n_rainfall == 0 else np.divide(h_rainfall, n_rainfall)
+    # # h_rainfall_div_n_rainfall = [0 if x == float('inf') else x for x in h_rainfall_div_n_rainfall]
+    # for i in range(len(h_rainfall_div_n_rainfall)):
+    #     if h_rainfall_div_n_rainfall[i] == np.inf:
+    #         h_rainfall_div_n_rainfall[i] = 0
+
+    with np.errstate(divide='ignore', invalid='ignore'):
+        h_rainfall_div_n_rainfall = np.divide(h_rainfall, n_rainfall)
+        h_rainfall_div_n_rainfall[n_rainfall == 0] = 0
+
     # Тут опять сайт world-weather
     # Тут будет парситься 60 страниц 12*5, где в переменной ссылки на страницу есть название месяца
     months_ww = ["january", "february", "march", "april", "may", "june",
@@ -206,7 +219,8 @@ def parsing(name_of_city_ww, id_city_pogoda360):
         'h_rainfall_div_n_rainfall': h_rainfall_div_n_rainfall,
         'h_rainfall': h_rainfall,
         'n_t_div_n': data,
-        'n_t': data_n
+        'n_t': data_n,
+        'n_days': n_days
 
     })
 

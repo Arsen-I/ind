@@ -1,5 +1,5 @@
 import numpy as np
-
+import pandas as pd
 
 def func_ind(df):
 
@@ -60,3 +60,7 @@ def func_ind(df):
     indic.reset_index(drop=True, inplace=True)
 
     return indic
+
+data_by_hand = pd.read_excel('df.xlsx')
+indicatricies_by_hand = func_ind(data_by_hand)
+indicatricies_by_hand.to_excel('indicatricies_by_hand.xlsx')
