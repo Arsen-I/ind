@@ -7,10 +7,10 @@ def main():
     #Параметры, соответствующие ближайшему населенному пункту
 
     #id для world weather
-    name_of_city_ww = 'pogranichny'
+    name_of_city_ww = 'norilsk'
 
     #id для Pogoda360
-    id_city_pogoda360 = 320818
+    id_city_pogoda360 = 981091
 
     data = parsing(name_of_city_ww,id_city_pogoda360)
     indicatrices = func_ind((data))

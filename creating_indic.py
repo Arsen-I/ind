@@ -26,7 +26,6 @@ def func_ind(df):
                                          'avg_month_temp'])),
                            (1 - df['n_t_div_n'] - df['n_rainfall_div_n'] + k_sj * df['n_t_div_n'] + (1 - 0.0388) * df[
                                'n_rainfall_div_n']))
-
     df['ind_1'] = round(df['ind_1'], 5)
 
     df['ind_2'] = np.where(df['avg_month_temp'] <= 0,
@@ -63,4 +62,4 @@ def func_ind(df):
 
 data_by_hand = pd.read_excel('df.xlsx')
 indicatricies_by_hand = func_ind(data_by_hand)
-indicatricies_by_hand.to_excel('indicatricies_by_hand.xlsx')
+# indicatricies_by_hand.to_excel('indicatricies_by_hand.xlsx')
